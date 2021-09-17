@@ -8,7 +8,7 @@ const RegisterScreen = ({ navigation }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [imageURL, setImageURL] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -20,7 +20,7 @@ const RegisterScreen = ({ navigation }) => {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((authUser) => {
-        authUser.user.update({
+        authUser.user.updateProfile({
           displayName: name,
           photoURL:
             imageUrl || "https://randomuser.me/api/portraits/men/10.jpg",
@@ -58,8 +58,8 @@ const RegisterScreen = ({ navigation }) => {
         <Input
           placeholder="Paste profile photo url (optional)"
           type="text"
-          value={imageURL}
-          onChangeText={(text) => setImageURL(text)}
+          value={imageUrl}
+          onChangeText={(text) => setImageUrl(text)}
           onSubmitEditing={register}
         />
         <Button raised onPress={register} title="Register" />
